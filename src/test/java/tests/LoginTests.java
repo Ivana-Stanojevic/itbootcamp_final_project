@@ -79,6 +79,7 @@ public class LoginTests extends BaseTest {
     public void login() {
         loginPage.fillLogIn(VALIDEMAIL, VALIDPASSWORD);
         Assert.assertEquals(driver.getCurrentUrl(), baseUrl + "/home");
+       // homePage.getLogoutButton().click();
 
     }
 

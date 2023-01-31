@@ -39,7 +39,9 @@ public class LoginPage extends BasePage{
     }
 
     public void fillLogIn(String email, String password) {
+        this.email.clear();
         this.email.sendKeys(email);
+        this.password.clear();
         this.password.sendKeys(password);
         loginButton.click();
         try {
