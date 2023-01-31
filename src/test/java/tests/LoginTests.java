@@ -35,7 +35,7 @@ public class LoginTests extends BaseTest {
     public void visitsTheLoginPage() {
 
         String actualUrl = driver.getCurrentUrl();
-        String expectedUrl = "https://vue-demo.daniel-avellaneda.com/login";
+        String expectedUrl = baseUrl + "/login";
         Assert.assertEquals(actualUrl, expectedUrl);
 
     }
@@ -60,7 +60,7 @@ public class LoginTests extends BaseTest {
         String actualMessage = loginPage.getMessage().getText();
         String expectedMessage = "User does not exists";
         Assert.assertEquals(actualMessage, expectedMessage);
-        Assert.assertEquals(driver.getCurrentUrl(), "https://vue-demo.daniel-avellaneda.com/login");
+        Assert.assertEquals(driver.getCurrentUrl(), baseUrl + "/login");
 
     }
 
@@ -71,14 +71,26 @@ public class LoginTests extends BaseTest {
         String actualMessage = loginPage.getMessage().getText();
         String expectedMessage = "Wrong password";
         Assert.assertEquals(actualMessage, expectedMessage);
-        Assert.assertEquals(driver.getCurrentUrl(), "https://vue-demo.daniel-avellaneda.com/login");
+        Assert.assertEquals(driver.getCurrentUrl(), baseUrl + "/login");
 
     }
 
     @Test
     public void login() {
         loginPage.fillLogIn(VALIDEMAIL, VALIDPASSWORD);
-        Assert.assertEquals(driver.getCurrentUrl(), baseUrl + "home");
+        Assert.assertEquals(driver.getCurrentUrl(), baseUrl + "/home");
+
+    }
+
+    @Test
+    public void logout() {
+        loginPage.fillLogIn(VALIDEMAIL, VALIDPASSWORD);
+        Assert.assertTrue(homePage.isLogoutButtonVisible());
+        homePage.getLogoutButton().click();
+        Assert.assertEquals(driver.getCurrentUrl(), baseUrl + "/login");
+        driver.get(baseUrl + "/home");
+        Assert.assertEquals(driver.getCurrentUrl(), baseUrl + "/login");
+
 
     }
 }

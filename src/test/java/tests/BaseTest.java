@@ -12,7 +12,7 @@ import java.time.Duration;
 public abstract class BaseTest {
     protected WebDriver driver;
     protected WebDriverWait driverWait;
-    protected String baseUrl = "https://vue-demo.daniel-avellaneda.com/";
+    protected String baseUrl = "https://vue-demo.daniel-avellaneda.com";
 
     @BeforeClass
     public void beforeClass() {
