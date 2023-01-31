@@ -22,7 +22,7 @@ public abstract class BaseTest {
     }
 
     @BeforeMethod
-    public void beforMethod() {
+    public void beforeMethod() {
         driver.get(baseUrl);
         driver.manage().window().maximize();
     }

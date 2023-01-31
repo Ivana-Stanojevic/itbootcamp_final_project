@@ -17,7 +17,7 @@ public class LoginTests extends BaseTest {
 
     @BeforeClass
     @Override
-    public void beforeClass() {
+    public void beforeClass() { 
         super.beforeClass();
         homePage = new HomePage(driver, driverWait);
         loginPage = new LoginPage(driver, driverWait);
@@ -26,8 +26,8 @@ public class LoginTests extends BaseTest {
 
     @BeforeMethod
     @Override
-    public void beforMethod() {
-        super.beforMethod();
+    public void beforeMethod() {
+        super.beforeMethod();
         homePage.loginButtonClick();
     }
 
