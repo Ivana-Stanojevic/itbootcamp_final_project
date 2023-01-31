@@ -11,6 +11,8 @@ import pages.LoginPage;
 public class LoginTests extends BaseTest {
     private HomePage homePage;
     private LoginPage loginPage;
+    private Faker faker;
+    private final String VALIDUSER="admin@admin.com";
 
     @BeforeClass
     @Override
@@ -18,6 +20,7 @@ public class LoginTests extends BaseTest {
         super.beforeClass();
         homePage = new HomePage(driver, driverWait);
         loginPage = new LoginPage(driver, driverWait);
+        faker=new Faker();
     }
 
     @BeforeMethod
@@ -51,7 +54,7 @@ public class LoginTests extends BaseTest {
 
     @Test
     public void displaysErrorsWhenUserDoesNotExist() {
-        Faker faker = new Faker();
+
         loginPage.fillLogIn(faker.internet().emailAddress(), faker.internet().password());
         String actualMessage = loginPage.getMessage().getText();
         String expectedMessage = "User does not exists";
@@ -60,4 +63,14 @@ public class LoginTests extends BaseTest {
 
     }
 
+    @Test
+    public void displaysErrorsWhenPasswordIsWrong() {
+
+        loginPage.fillLogIn(VALIDUSER, faker.internet().password());
+        String actualMessage=loginPage.getMessage().getText();
+        String expectedMessage="Wrong password";
+        Assert.assertEquals(actualMessage, expectedMessage);
+        Assert.assertEquals(driver.getCurrentUrl(),"https://vue-demo.daniel-avellaneda.com/login");
+
+    }
 }
