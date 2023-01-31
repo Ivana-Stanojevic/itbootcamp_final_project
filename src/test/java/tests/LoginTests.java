@@ -1,55 +1,63 @@
 package tests;
 
+import com.github.javafaker.Faker;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.LoginPage;
 
 public class LoginTests extends BaseTest {
-   private HomePage homePage;
+    private HomePage homePage;
     private LoginPage loginPage;
 
     @BeforeClass
     @Override
     public void beforeClass() {
         super.beforeClass();
-        homePage=new HomePage(driver,driverWait);
-        loginPage=new LoginPage(driver, driverWait);
+        homePage = new HomePage(driver, driverWait);
+        loginPage = new LoginPage(driver, driverWait);
+    }
+
+    @BeforeMethod
+    @Override
+    public void beforMethod() {
+        super.beforMethod();
+        homePage.loginButtonClick();
     }
 
     @Test
     public void visitsTheLoginPage() {
 
-        homePage.loginButtonClick();
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        String actualUrl=driver.getCurrentUrl();
-        String expectedUrl ="https://vue-demo.daniel-avellaneda.com/login";
+        String actualUrl = driver.getCurrentUrl();
+        String expectedUrl = "https://vue-demo.daniel-avellaneda.com/login";
         Assert.assertEquals(actualUrl, expectedUrl);
 
     }
 
     @Test
     public void checksInputTypes() {
-        homePage.loginButtonClick();
 
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
-        String actualEmailType=loginPage.getEmail().getAttribute("type");
-        String expectedEmailType= "email";
+        String actualEmailType = loginPage.getEmail().getAttribute("type");
+        String expectedEmailType = "email";
         Assert.assertEquals(actualEmailType, expectedEmailType);
 
-        String actualPasswordType=loginPage.getPassword().getAttribute("type");
-        String expectedPasswordType="password";
+        String actualPasswordType = loginPage.getPassword().getAttribute("type");
+        String expectedPasswordType = "password";
         Assert.assertEquals(actualPasswordType, expectedPasswordType);
 
     }
+
+    @Test
+    public void displaysErrorsWhenUserDoesNotExist() {
+        Faker faker = new Faker();
+        loginPage.fillLogIn(faker.internet().emailAddress(), faker.internet().password());
+        String actualMessage = loginPage.getMessage().getText();
+        String expectedMessage = "User does not exists";
+        Assert.assertEquals(actualMessage,expectedMessage);
+        Assert.assertEquals(driver.getCurrentUrl(),"https://vue-demo.daniel-avellaneda.com/login");
+
+    }
+
 }

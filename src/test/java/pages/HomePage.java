@@ -18,5 +18,11 @@ public class HomePage extends BasePage{
 
     public void loginButtonClick() {
         loginButton.click();
+
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
