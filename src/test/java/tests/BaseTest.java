@@ -24,6 +24,7 @@ public abstract class BaseTest {
     @BeforeMethod
     public void beforMethod() {
         driver.get(baseUrl);
+        driver.manage().window().maximize();
     }
 
     @AfterClass
