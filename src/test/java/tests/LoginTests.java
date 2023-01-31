@@ -12,7 +12,8 @@ public class LoginTests extends BaseTest {
     private HomePage homePage;
     private LoginPage loginPage;
     private Faker faker;
-    private final String VALIDUSER="admin@admin.com";
+    private final String VALIDEMAIL = "admin@admin.com";
+    private final String VALIDPASSWORD = "12345";
 
     @BeforeClass
     @Override
@@ -20,7 +21,7 @@ public class LoginTests extends BaseTest {
         super.beforeClass();
         homePage = new HomePage(driver, driverWait);
         loginPage = new LoginPage(driver, driverWait);
-        faker=new Faker();
+        faker = new Faker();
     }
 
     @BeforeMethod
@@ -58,19 +59,26 @@ public class LoginTests extends BaseTest {
         loginPage.fillLogIn(faker.internet().emailAddress(), faker.internet().password());
         String actualMessage = loginPage.getMessage().getText();
         String expectedMessage = "User does not exists";
-        Assert.assertEquals(actualMessage,expectedMessage);
-        Assert.assertEquals(driver.getCurrentUrl(),"https://vue-demo.daniel-avellaneda.com/login");
+        Assert.assertEquals(actualMessage, expectedMessage);
+        Assert.assertEquals(driver.getCurrentUrl(), "https://vue-demo.daniel-avellaneda.com/login");
 
     }
 
     @Test
     public void displaysErrorsWhenPasswordIsWrong() {
 
-        loginPage.fillLogIn(VALIDUSER, faker.internet().password());
-        String actualMessage=loginPage.getMessage().getText();
-        String expectedMessage="Wrong password";
+        loginPage.fillLogIn(VALIDEMAIL, faker.internet().password());
+        String actualMessage = loginPage.getMessage().getText();
+        String expectedMessage = "Wrong password";
         Assert.assertEquals(actualMessage, expectedMessage);
-        Assert.assertEquals(driver.getCurrentUrl(),"https://vue-demo.daniel-avellaneda.com/login");
+        Assert.assertEquals(driver.getCurrentUrl(), "https://vue-demo.daniel-avellaneda.com/login");
+
+    }
+
+    @Test
+    public void login() {
+        loginPage.fillLogIn(VALIDEMAIL, VALIDPASSWORD);
+        Assert.assertEquals(driver.getCurrentUrl(), baseUrl + "home");
 
     }
 }
