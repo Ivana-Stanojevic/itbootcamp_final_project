@@ -13,6 +13,9 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div/header/div/div[3]/button[2]")
     private WebElement logoutButton;
 
+    @FindBy(xpath = "//*[@id=\"app\"]/div/div/header/div/div[3]/a[4]")
+    private WebElement singUpButton;
+
     public HomePage(WebDriver driver, WebDriverWait driverWait) {
         super(driver, driverWait);
     }
@@ -33,5 +36,9 @@ public class HomePage extends BasePage {
 
     public WebElement getLogoutButton() {
         return logoutButton;
+    }
+
+    public WebElement getSingUpButton() {
+        return singUpButton;
     }
 }
