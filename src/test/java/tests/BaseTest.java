@@ -30,13 +30,7 @@ public abstract class BaseTest {
         driver.manage().window().maximize();
     }
 
-    @AfterMethod
-    public void afterMethod() {
-        HomePage homePage=new HomePage(driver,driverWait);
-        if (driver.getCurrentUrl().equals(baseUrl+"/home")) {
-            homePage.getLogoutButton().click();
-        }
-    }
+
 
     @AfterClass
     public void afterClass() {
