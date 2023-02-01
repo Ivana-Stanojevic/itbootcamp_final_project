@@ -8,6 +8,44 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SignupPage extends BasePage {
 
+    @FindBy(id = "name")
+    private WebElement name;
+
+    @FindBy(id = "email")
+    private WebElement email;
+
+    @FindBy(id = "password")
+    private WebElement password;
+
+    @FindBy(id = "confirmPassword")
+    private WebElement confirmPassword;
+
+    @FindBy(xpath = "//*[@id=\"app\"]/div/main/div/div[2]/div/div/div[2]/span/form/div/div[5]/button")
+    private WebElement signMeUpButton;
+
+    public void fillSignUp(String name, String email, String password, String confirmPassword) {
+        this.name.clear();
+        this.name.sendKeys(name);
+        this.email.clear();
+        this.email.sendKeys(email);
+        this.password.clear();
+        this.password.sendKeys(password);
+        this.confirmPassword.clear();
+        this.confirmPassword.sendKeys(confirmPassword);
+        signMeUpButton.click();
+    }
+
+    public WebElement getEmail() {
+        return email;
+    }
+
+    public WebElement getPassword() {
+        return password;
+    }
+
+    public WebElement getConfirmPassword() {
+        return confirmPassword;
+    }
 
     public SignupPage(WebDriver driver, WebDriverWait driverWait) {
         super(driver, driverWait);
