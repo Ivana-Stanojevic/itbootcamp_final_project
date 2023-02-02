@@ -48,8 +48,9 @@ public class AdminCitiesTests extends BaseTest {
         adminCitiesPage.createNewCity(faker.address().cityName());
         driverWait.until(ExpectedConditions.visibilityOf(adminCitiesPage.getMessage()));
         Assert.assertEquals(adminCitiesPage.getMessage().getText().substring(0, 18), "Saved successfully");
-
     }
+
+
 
 
 
