@@ -16,6 +16,9 @@ public abstract class BaseTest {
     protected WebDriverWait driverWait;
     protected String baseUrl = "https://vue-demo.daniel-avellaneda.com";
 
+    protected final String VALIDEMAIL = "admin@admin.com";
+    protected final String VALIDPASSWORD = "12345";
+
     @BeforeClass
     public void beforeClass() {
         System.setProperty("driver.chrome.driver", "F:\\IVANA KOMP\\chromedriver.exe");

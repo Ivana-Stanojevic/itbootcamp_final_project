@@ -13,8 +13,7 @@ public class LoginTests extends BaseTest {
     private HomePage homePage;
     private LoginPage loginPage;
     private Faker faker;
-    private final String VALIDEMAIL = "admin@admin.com";
-    private final String VALIDPASSWORD = "12345";
+
 
     @BeforeClass
     @Override
