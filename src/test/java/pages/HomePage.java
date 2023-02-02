@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HomePage extends BasePage {
@@ -23,11 +24,37 @@ public class HomePage extends BasePage {
     private WebElement esLanguage;
 
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[1]/h1")
-    private WebElement messageLanguage;
+    private WebElement messageLanguageES;
 
-    public  void selectLanguange() {
+    @FindBy(className= "btnEN")
+    private WebElement enLanguage;
+
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[1]/h1")
+    private WebElement messageLanguageEN;
+
+    @FindBy(className = "btnFR")
+    private WebElement frLanguage;
+
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[1]/h1")
+    private WebElement messageLanguageFR;
+
+
+
+    public  void selectLanguangeEs() {
         languageButton.click();
         esLanguage.click();
+        driverWait.until(ExpectedConditions.visibilityOf(messageLanguageES));
+
+    }
+    public  void selectLanguangeEn() {
+        languageButton.click();
+        enLanguage.click();
+        driverWait.until(ExpectedConditions.visibilityOf(messageLanguageEN));
+    }
+    public  void selectLanguangeFr() {
+        languageButton.click();
+        frLanguage.click();
+        driverWait.until(ExpectedConditions.visibilityOf(messageLanguageFR));
     }
 
     public HomePage(WebDriver driver, WebDriverWait driverWait) {
@@ -57,6 +84,6 @@ public class HomePage extends BasePage {
     }
 
     public WebElement getMessageLanguage() {
-        return messageLanguage;
+        return messageLanguageES;
     }
 }

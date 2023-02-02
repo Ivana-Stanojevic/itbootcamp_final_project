@@ -18,9 +18,22 @@ public class LocaleTests extends BaseTest{
 
     @Test
     public void setLocaleToES() {
-
-        homePage.selectLanguange();
+        homePage.selectLanguangeEs();
         Assert.assertEquals(homePage.getMessageLanguage().getText(),"Página de aterrizaje");
 
     }
+
+    @Test
+    public void setLocaleToEN() {
+        homePage.selectLanguangeEn();
+        Assert.assertEquals(homePage.getMessageLanguage().getText(),"Landing");
+    }
+
+    @Test
+    public void setLocaleToFR() {
+        homePage.selectLanguangeFr();
+        Assert.assertEquals(homePage.getMessageLanguage().getText(),"Page d'atterrissage");
+    }
+
+
 }
