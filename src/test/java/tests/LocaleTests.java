@@ -18,6 +18,7 @@ public class LocaleTests extends BaseTest{
 
     @Test
     public void setLocaleToES() {
+
         homePage.selectLanguange();
         Assert.assertEquals(homePage.getMessageLanguage().getText(),"Página de aterrizaje");
 
