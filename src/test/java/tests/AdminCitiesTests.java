@@ -1,5 +1,6 @@
 package tests;
 
+import javafx.scene.layout.Priority;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -14,7 +15,7 @@ public class AdminCitiesTests extends BaseTest {
     private LoginPage loginPage;
     private HomePage homePage;
     private AdminCitiesPage adminCitiesPage;
-
+    private String myCity;
 
     @BeforeClass
     @Override
@@ -23,7 +24,7 @@ public class AdminCitiesTests extends BaseTest {
         loginPage = new LoginPage(driver, driverWait);
         homePage = new HomePage(driver, driverWait);
         adminCitiesPage = new AdminCitiesPage(driver, driverWait);
-
+        myCity = faker.address().cityName();
     }
 
     @BeforeMethod
@@ -35,6 +36,7 @@ public class AdminCitiesTests extends BaseTest {
         loginPage.fillLogIn(VALIDEMAIL, VALIDPASSWORD);
         driverWait.until(ExpectedConditions.urlContains("/home"));
         adminCitiesPage.openAdminCitiesPage();
+
     }
 
     @Test
@@ -43,17 +45,27 @@ public class AdminCitiesTests extends BaseTest {
         Assert.assertTrue(homePage.isLogoutButtonVisible());
     }
 
-    @Test
+    @Test(priority=1)
+
     public void createNewCity() {
-        adminCitiesPage.createNewCity(faker.address().cityName());
+        adminCitiesPage.createNewCity(myCity);
         driverWait.until(ExpectedConditions.visibilityOf(adminCitiesPage.getMessage()));
-        Assert.assertEquals(adminCitiesPage.getMessage().getText().substring(0, 18), "Saved successfully");
+        Assert.assertTrue(adminCitiesPage.getMessage().getText().contains("Saved successfully"));
+
     }
 
-
-
-
-
+    @Test(priority=2)
+    public void editCity() {
+        adminCitiesPage.searchCity(myCity);
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        adminCitiesPage.editCity(myCity);
+        driverWait.until(ExpectedConditions.visibilityOf(adminCitiesPage.getMessage()));
+        Assert.assertTrue(adminCitiesPage.getMessage().getText().contains("Saved successfully"));
+    }
 
 
     @AfterMethod
