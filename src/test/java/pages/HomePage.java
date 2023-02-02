@@ -24,37 +24,31 @@ public class HomePage extends BasePage {
     private WebElement esLanguage;
 
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[1]/h1")
-    private WebElement messageLanguageES;
+    private WebElement messageLanguage;
 
     @FindBy(className= "btnEN")
     private WebElement enLanguage;
 
-    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[1]/h1")
-    private WebElement messageLanguageEN;
 
     @FindBy(className = "btnFR")
     private WebElement frLanguage;
-
-    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[1]/h1")
-    private WebElement messageLanguageFR;
-
 
 
     public  void selectLanguangeEs() {
         languageButton.click();
         esLanguage.click();
-        driverWait.until(ExpectedConditions.visibilityOf(messageLanguageES));
+        driverWait.until(ExpectedConditions.visibilityOf(messageLanguage));
 
     }
     public  void selectLanguangeEn() {
         languageButton.click();
         enLanguage.click();
-        driverWait.until(ExpectedConditions.visibilityOf(messageLanguageEN));
+        driverWait.until(ExpectedConditions.visibilityOf(messageLanguage));
     }
     public  void selectLanguangeFr() {
         languageButton.click();
         frLanguage.click();
-        driverWait.until(ExpectedConditions.visibilityOf(messageLanguageFR));
+        driverWait.until(ExpectedConditions.visibilityOf(messageLanguage));
     }
 
     public HomePage(WebDriver driver, WebDriverWait driverWait) {
@@ -84,6 +78,25 @@ public class HomePage extends BasePage {
     }
 
     public WebElement getMessageLanguage() {
-        return messageLanguageES;
+        return messageLanguage;
+    }
+
+    public WebElement getEnLanguage() {
+        return enLanguage;
+    }
+
+    public WebElement getFrLanguage() {
+        return frLanguage;
+    }
+
+    public WebElement getEsLanguage() {
+        return esLanguage;
+    }
+
+    public boolean isLogedOut(String url) {
+        if (driver.getCurrentUrl().equals(url) || driver.getCurrentUrl().equals(url+"/login")) {
+            return true;
+        }
+        return false;
     }
 }

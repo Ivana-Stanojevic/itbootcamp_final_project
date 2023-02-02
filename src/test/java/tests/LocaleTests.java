@@ -19,6 +19,7 @@ public class LocaleTests extends BaseTest{
     @Test
     public void setLocaleToES() {
         homePage.selectLanguangeEs();
+        Assert.assertEquals(homePage.getEsLanguage().getText(), "ES");
         Assert.assertEquals(homePage.getMessageLanguage().getText(),"Página de aterrizaje");
 
     }
@@ -26,12 +27,14 @@ public class LocaleTests extends BaseTest{
     @Test
     public void setLocaleToEN() {
         homePage.selectLanguangeEn();
+        Assert.assertEquals(homePage.getEnLanguage().getText(), "EN");
         Assert.assertEquals(homePage.getMessageLanguage().getText(),"Landing");
     }
 
     @Test
     public void setLocaleToFR() {
         homePage.selectLanguangeFr();
+        Assert.assertEquals(homePage.getFrLanguage().getText(), "FR");
         Assert.assertEquals(homePage.getMessageLanguage().getText(),"Page d'atterrissage");
     }
 
