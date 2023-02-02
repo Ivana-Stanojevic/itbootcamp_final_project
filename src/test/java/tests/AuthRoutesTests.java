@@ -12,6 +12,10 @@ public class AuthRoutesTests extends BaseTest{
         driver.get(baseUrl+"/home");
         Assert.assertEquals(driver.getCurrentUrl(),baseUrl+"/login");
     }
+
     @Test
-    public void
+    public void forbidsVisitsToProfileUrlIfNotAuthenticated() {
+        driver.get(baseUrl+"/profile");
+        Assert.assertEquals(driver.getCurrentUrl(),baseUrl+"/login");
+    }
 }
