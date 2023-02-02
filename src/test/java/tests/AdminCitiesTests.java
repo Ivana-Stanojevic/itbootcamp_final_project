@@ -2,6 +2,7 @@ package tests;
 
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -13,6 +14,7 @@ public class AdminCitiesTests extends BaseTest {
     private LoginPage loginPage;
     private HomePage homePage;
     private AdminCitiesPage adminCitiesPage;
+
 
     @BeforeClass
     @Override
@@ -41,8 +43,22 @@ public class AdminCitiesTests extends BaseTest {
         Assert.assertTrue(homePage.isLogoutButtonVisible());
     }
 
-   @Test
+    @Test
     public void createNewCity() {
+        adminCitiesPage.createNewCity(faker.address().cityName());
+        driverWait.until(ExpectedConditions.visibilityOf(adminCitiesPage.getMessage()));
+        Assert.assertEquals(adminCitiesPage.getMessage().getText().substring(0, 18), "Saved successfully");
 
-   }
+    }
+
+
+
+
+
+    @AfterMethod
+    public void afterrMethod() {
+        if (driver.getCurrentUrl() != baseUrl) {
+            homePage.getLogoutButton().click();
+        }
+    }
 }

@@ -15,7 +15,7 @@ public class SignupTests extends BaseTest {
 
     private HomePage homePage;
     private SignupPage signupPage;
-    private Faker faker;
+
 
     @BeforeClass
     @Override
@@ -23,7 +23,7 @@ public class SignupTests extends BaseTest {
         super.beforeClass();
         homePage = new HomePage(driver, driverWait);
         signupPage = new SignupPage(driver, driverWait);
-        faker = new Faker();
+
     }
 
     @BeforeMethod

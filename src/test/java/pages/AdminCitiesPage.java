@@ -15,6 +15,28 @@ public class AdminCitiesPage extends BasePage {
     @FindBy(className = "btnAdminCities")
     private WebElement cities;
 
+
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[1]/div[3]/form/div[1]/button/span")
+    private WebElement newItem;
+
+    @FindBy(id = "name")
+    private WebElement itemName;
+
+    @FindBy(className = "btnSave")
+    private WebElement saveButton;
+
+
+    @FindBy(id = "search")
+    private WebElement search;
+    @FindBy(xpath = "//*[@id=\"app\"]/div[2]/main/div/div[2]/div/div[3]/div/div/div/div/div[1]")
+    private WebElement message;
+
+    public void createNewCity(String itemName) {
+        newItem.click();
+        this.itemName.sendKeys(itemName);
+        saveButton.click();
+    }
+
     public void openAdminCitiesPage() {
 
         adminButton.click();
@@ -25,12 +47,15 @@ public class AdminCitiesPage extends BasePage {
             throw new RuntimeException(e);
         }
 
-
     }
 
+
     public AdminCitiesPage(WebDriver driver, WebDriverWait driverWait) {
+
         super(driver, driverWait);
     }
 
-
+    public WebElement getMessage() {
+        return message;
+    }
 }

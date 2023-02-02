@@ -12,7 +12,7 @@ import pages.LoginPage;
 public class LoginTests extends BaseTest {
     private HomePage homePage;
     private LoginPage loginPage;
-    private Faker faker;
+
 
 
     @BeforeClass
@@ -21,7 +21,7 @@ public class LoginTests extends BaseTest {
         super.beforeClass();
         homePage = new HomePage(driver, driverWait);
         loginPage = new LoginPage(driver, driverWait);
-        faker = new Faker();
+
     }
 
     @BeforeMethod
