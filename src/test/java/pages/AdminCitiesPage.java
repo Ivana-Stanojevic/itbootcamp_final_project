@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
@@ -62,7 +63,10 @@ public class AdminCitiesPage extends BasePage {
     public void editCity(String city) {
         editButton.click();
         driverWait.until(ExpectedConditions.visibilityOf(cityName));
-        this.cityName.clear();
+
+        // this.cityName.clear();
+        cityName.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        cityName.sendKeys(Keys.DELETE);
 
         try {
             Thread.sleep(2000);
@@ -70,7 +74,7 @@ public class AdminCitiesPage extends BasePage {
             throw new RuntimeException(e);
         }
 
-        cityName.sendKeys(city +" - edited");
+        cityName.sendKeys(city + " - edited");
         saveButton.click();
     }
 

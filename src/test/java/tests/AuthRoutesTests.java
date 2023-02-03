@@ -7,22 +7,22 @@ import org.testng.annotations.Test;
 import pages.HomePage;
 
 public class AuthRoutesTests extends BaseTest {
-private HomePage homePage;
+    private HomePage homePage;
 
     @BeforeClass
     @Override
     public void beforeClass() {
         super.beforeClass();
-        homePage=new HomePage(driver, driverWait);
+        homePage = new HomePage(driver, driverWait);
     }
 
     @BeforeMethod
     @Override
     public void beforeMethod() {
         super.beforeMethod();
-         try {
-             homePage.getLogoutButton().click();
-         } catch (Exception e){
+        try {
+            homePage.getLogoutButton().click();
+        } catch (Exception e) {
 
         }
 

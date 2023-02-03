@@ -45,7 +45,7 @@ public class AdminCitiesTests extends BaseTest {
         Assert.assertTrue(homePage.isLogoutButtonVisible());
     }
 
-    @Test(priority=1)
+    @Test(priority = 1)
 
     public void createNewCity() {
         adminCitiesPage.createNewCity(myCity);
@@ -54,7 +54,7 @@ public class AdminCitiesTests extends BaseTest {
 
     }
 
-    @Test(priority=2)
+    @Test(priority = 2)
     public void editCity() {
         adminCitiesPage.searchCity(myCity);
         try {
