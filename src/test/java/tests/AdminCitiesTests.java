@@ -67,6 +67,13 @@ public class AdminCitiesTests extends BaseTest {
         Assert.assertTrue(adminCitiesPage.getMessage().getText().contains("Saved successfully"));
     }
 
+    @Test(priority = 3)
+    public void searchCity() {
+        adminCitiesPage.searchCity(myCity + " - edited");
+        Assert.assertEquals(adminCitiesPage.getCityNameTable().getText(), myCity + " - edited");
+
+    }
+
 
     @AfterMethod
     public void afterrMethod() {

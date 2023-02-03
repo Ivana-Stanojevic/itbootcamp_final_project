@@ -38,6 +38,9 @@ public class AdminCitiesPage extends BasePage {
     @FindBy(id = "edit")
     private WebElement editButton;
 
+    @FindBy(xpath = "//*[@id=\"app\"]/div/main/div/div[2]/div/div[1]/div[2]/table/tbody/tr[1]/td[2]")
+    private  WebElement cityNameTable;
+
     public void createNewCity(String itemName) {
         newItem.click();
         this.cityName.sendKeys(itemName);
@@ -90,5 +93,9 @@ public class AdminCitiesPage extends BasePage {
 
     public WebElement getCityName() {
         return cityName;
+    }
+
+    public WebElement getCityNameTable() {
+        return cityNameTable;
     }
 }
