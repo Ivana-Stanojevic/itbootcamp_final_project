@@ -70,8 +70,27 @@ public class AdminCitiesTests extends BaseTest {
     @Test(priority = 3)
     public void searchCity() {
         adminCitiesPage.searchCity(myCity + " - edited");
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         Assert.assertEquals(adminCitiesPage.getCityNameTable().getText(), myCity + " - edited");
 
+    }
+
+    @Test(priority = 4)
+    private void deleteCity() {
+        adminCitiesPage.searchCity(myCity);
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        Assert.assertTrue(adminCitiesPage.getCityNameTable().getText().contains(myCity));
+        adminCitiesPage.deleteCity();
+        driverWait.until(ExpectedConditions.visibilityOf(adminCitiesPage.getDeleteMessage()));
+        Assert.assertTrue(adminCitiesPage.getDeleteMessage().getText().contains("Deleted successfully"));
     }
 
 
