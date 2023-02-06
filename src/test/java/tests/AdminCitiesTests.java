@@ -1,19 +1,16 @@
 package tests;
 
-import javafx.scene.layout.Priority;
+
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.AdminCitiesPage;
-import pages.HomePage;
 import pages.LoginPage;
 
 public class AdminCitiesTests extends BaseTest {
     private LoginPage loginPage;
-    private HomePage homePage;
     private AdminCitiesPage adminCitiesPage;
     private String myCity;
 
@@ -22,7 +19,6 @@ public class AdminCitiesTests extends BaseTest {
     public void beforeClass() {
         super.beforeClass();
         loginPage = new LoginPage(driver, driverWait);
-        homePage = new HomePage(driver, driverWait);
         adminCitiesPage = new AdminCitiesPage(driver, driverWait);
         myCity = faker.address().cityName();
     }
@@ -93,11 +89,4 @@ public class AdminCitiesTests extends BaseTest {
         Assert.assertTrue(adminCitiesPage.getDeleteMessage().getText().contains("Deleted successfully"));
     }
 
-
-    @AfterMethod
-    public void afterrMethod() {
-        if (driver.getCurrentUrl() != baseUrl) {
-            homePage.getLogoutButton().click();
-        }
-    }
 }

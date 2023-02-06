@@ -1,22 +1,10 @@
 package tests;
 
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.HomePage;
+
 
 public class AuthRoutesTests extends BaseTest {
-    private HomePage homePage;
-
-    @BeforeClass
-    @Override
-    public void beforeClass() {
-        super.beforeClass();
-        homePage = new HomePage(driver, driverWait);
-    }
-
 
     @Test
     public void forbidsVisitsToTomeUrlIfNotAuthenticated() {
@@ -46,12 +34,5 @@ public class AuthRoutesTests extends BaseTest {
         Assert.assertEquals(driver.getCurrentUrl(), baseUrl + "/login");
     }
 
-    @AfterMethod
-    public void afterMethod() {
-        try {
-            homePage.getLogoutButton().click();
-        } catch (Exception e) {
 
-        }
-    }
 }

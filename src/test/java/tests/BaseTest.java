@@ -20,14 +20,16 @@ public abstract class BaseTest {
     protected final String VALIDEMAIL = "admin@admin.com";
     protected final String VALIDPASSWORD = "12345";
     protected Faker faker;
+    protected HomePage homePage;
 
     @BeforeClass
     public void beforeClass() {
         System.setProperty("driver.chrome.driver", "F:\\IVANA KOMP\\chromedriver.exe");
         driver = new ChromeDriver();
         driverWait = new WebDriverWait(driver, Duration.ofSeconds(20));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         faker=new Faker();
+        homePage=new HomePage(driver,driverWait);
     }
 
     @BeforeMethod
@@ -35,7 +37,14 @@ public abstract class BaseTest {
         driver.get(baseUrl);
         driver.manage().window().maximize();
     }
+    @AfterMethod
+    public void afterMethod() {
+        try {
+            homePage.getLogoutButton().click();
+        } catch (Exception e) {
 
+        }
+    }
 
     @AfterClass
     public void afterClass() {

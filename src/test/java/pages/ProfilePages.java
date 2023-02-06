@@ -3,14 +3,9 @@ package pages;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.security.Key;
-import java.util.List;
 
 public class ProfilePages extends BasePage {
 
@@ -21,7 +16,7 @@ public class ProfilePages extends BasePage {
     @FindBy(id = "phone")
     private WebElement phoneNumber;
 
-@FindBy(name= "city")
+    @FindBy(name = "city")
     private WebElement city;
 
     @FindBy(id = "country")
@@ -46,8 +41,7 @@ public class ProfilePages extends BasePage {
     }
 
 
-
-    public void fillProfile(String name, String phoneNumber, String city,String country, String twitter, String gitHub) {
+    public void fillProfile(String name, String phoneNumber, String city, String country, String twitter, String gitHub) {
         this.name.click();
         this.name.sendKeys(Keys.chord(Keys.CONTROL, "a"));
         this.name.sendKeys(Keys.DELETE);
@@ -91,7 +85,6 @@ public class ProfilePages extends BasePage {
     public WebElement getPhoneNumber() {
         return phoneNumber;
     }
-
 
 
     public WebElement getCountry() {

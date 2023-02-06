@@ -8,10 +8,8 @@ import org.testng.annotations.Test;
 import pages.*;
 
 public class ProfileTests extends BaseTest {
-    private HomePage homePage;
     private LoginPage loginPage;
     private ProfilePages profilePages;
-    private SignupPage signupPage;
     private String name;
     private String phoneNumber;
     private String country;
@@ -24,10 +22,8 @@ public class ProfileTests extends BaseTest {
     @Override
     public void beforeClass() {
         super.beforeClass();
-        homePage = new HomePage(driver, driverWait);
         loginPage = new LoginPage(driver, driverWait);
         profilePages = new ProfilePages(driver, driverWait);
-        signupPage = new SignupPage(driver, driverWait);
         adminCitiesPage = new AdminCitiesPage(driver, driverWait);
         name = faker.name().name();
         phoneNumber = faker.phoneNumber().phoneNumber();
@@ -61,6 +57,5 @@ public class ProfileTests extends BaseTest {
         Assert.assertEquals(profilePages.getTwitter().getAttribute("value"), urlTwitter);
         Assert.assertEquals(profilePages.getGitHub().getAttribute("value"), urlGitHub);
     }
-
 
 }

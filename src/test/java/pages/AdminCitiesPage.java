@@ -39,11 +39,11 @@ public class AdminCitiesPage extends BasePage {
     private WebElement editButton;
 
     @FindBy(xpath = "//*[@id=\"app\"]/div/main/div/div[2]/div/div[1]/div[2]/table/tbody/tr[1]/td[2]")
-    private  WebElement cityNameTable;
+    private WebElement cityNameTable;
 
-    @FindBy(className= "mdi-delete")
+    @FindBy(className = "mdi-delete")
     private WebElement deleteInTable;
-    @FindBy(className= "text--lighten3")
+    @FindBy(className = "text--lighten3")
     private WebElement deleteButton;
 
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[3]/div/div/div/div/div[1]")

@@ -20,13 +20,13 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div/header/div/div[3]/button/span")
     private WebElement languageButton;
 
-    @FindBy(className= "btnES")
+    @FindBy(className = "btnES")
     private WebElement esLanguage;
 
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[1]/h1")
     private WebElement messageLanguage;
 
-    @FindBy(className= "btnEN")
+    @FindBy(className = "btnEN")
     private WebElement enLanguage;
 
 
@@ -34,18 +34,20 @@ public class HomePage extends BasePage {
     private WebElement frLanguage;
 
 
-    public  void selectLanguangeEs() {
+    public void selectLanguageEs() {
         languageButton.click();
         esLanguage.click();
         driverWait.until(ExpectedConditions.visibilityOf(messageLanguage));
 
     }
-    public  void selectLanguangeEn() {
+
+    public void selectLanguageEn() {
         languageButton.click();
         enLanguage.click();
         driverWait.until(ExpectedConditions.visibilityOf(messageLanguage));
     }
-    public  void selectLanguangeFr() {
+
+    public void selectLanguageFr() {
         languageButton.click();
         frLanguage.click();
         driverWait.until(ExpectedConditions.visibilityOf(messageLanguage));
@@ -94,7 +96,7 @@ public class HomePage extends BasePage {
     }
 
     public boolean isLogedOut(String url) {
-        if (driver.getCurrentUrl().equals(url) || driver.getCurrentUrl().equals(url+"/login")) {
+        if (driver.getCurrentUrl().equals(url) || driver.getCurrentUrl().equals(url + "/login")) {
             return true;
         }
         return false;
