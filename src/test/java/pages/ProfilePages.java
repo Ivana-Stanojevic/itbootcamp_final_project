@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -46,22 +47,31 @@ public class ProfilePages extends BasePage {
 
 
 
-    public void fillProfile(String name, String phoneNumber, String country, String twitter, String gitHub) {
-        this.name.clear();
+    public void fillProfile(String name, String phoneNumber, String city,String country, String twitter, String gitHub) {
+        this.name.click();
+        this.name.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        this.name.sendKeys(Keys.DELETE);
         this.name.sendKeys(name);
-        this.phoneNumber.clear();
+        this.phoneNumber.click();
+        this.phoneNumber.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        this.phoneNumber.sendKeys(Keys.DELETE);
         this.phoneNumber.sendKeys(phoneNumber);
+        this.city.click();
         this.city.sendKeys(Keys.chord(Keys.CONTROL, "a"));
         this.city.sendKeys(Keys.DELETE);
+        this.city.sendKeys(city);
         this.city.sendKeys(Keys.ARROW_DOWN);
         this.city.sendKeys(Keys.ARROW_DOWN);
         this.city.sendKeys(Keys.ENTER);
-
-        this.country.clear();
+        this.country.click();
+        this.country.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        this.country.sendKeys(Keys.DELETE);
         this.country.sendKeys(country);
-        this.twitter.clear();
+        this.twitter.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        this.twitter.sendKeys(Keys.DELETE);
         this.twitter.sendKeys(twitter);
-        this.gitHub.clear();
+        this.gitHub.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        this.gitHub.sendKeys(Keys.DELETE);
         this.gitHub.sendKeys(gitHub);
         saveButton.click();
     }

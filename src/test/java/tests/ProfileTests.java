@@ -5,10 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.HomePage;
-import pages.LoginPage;
-import pages.ProfilePages;
-import pages.SignupPage;
+import pages.*;
 
 public class ProfileTests extends BaseTest {
     private HomePage homePage;
@@ -21,6 +18,7 @@ public class ProfileTests extends BaseTest {
     private String city;
     private String urlTwitter;
     private String urlGitHub;
+    private AdminCitiesPage adminCitiesPage;
 
     @BeforeClass
     @Override
@@ -29,12 +27,14 @@ public class ProfileTests extends BaseTest {
         homePage = new HomePage(driver, driverWait);
         loginPage = new LoginPage(driver, driverWait);
         profilePages = new ProfilePages(driver, driverWait);
-        signupPage=new SignupPage(driver, driverWait);
-        name=faker.name().name();
-        phoneNumber=faker.phoneNumber().phoneNumber();
-        country=faker.address().country();
-        urlTwitter="https://"+faker.internet().url();
-        urlGitHub="https://"+faker.internet().url();
+        signupPage = new SignupPage(driver, driverWait);
+        adminCitiesPage = new AdminCitiesPage(driver, driverWait);
+        name = faker.name().name();
+        phoneNumber = faker.phoneNumber().phoneNumber();
+        city = faker.address().city();
+        country = faker.address().country();
+        urlTwitter = "https://" + faker.internet().url();
+        urlGitHub = "https://" + faker.internet().url();
 
     }
 
@@ -42,23 +42,21 @@ public class ProfileTests extends BaseTest {
     @Override
     public void beforeMethod() {
         super.beforeMethod();
-        homePage.getSingUpButton().click();
-        signupPage.fillSignUp(name, faker.internet().emailAddress(), "5555333", "5555333");
-        //loginPage.fillLogIn(VALIDEMAIL, VALIDPASSWORD);
-        driverWait.until(ExpectedConditions.visibilityOf(signupPage.getCloseButton()));
-        signupPage.getCloseButton().click();
-        driverWait.until(ExpectedConditions.urlContains(baseUrl+"/home"));
+        homePage.loginButtonClick();
+        loginPage.fillLogIn(VALIDEMAIL, VALIDPASSWORD);
+        driverWait.until(ExpectedConditions.urlContains(baseUrl + "/home"));
+        adminCitiesPage.openAdminCitiesPage();
+        adminCitiesPage.createNewCity(city);
         profilePages.getMyProfile().click();
     }
-
     @Test
     public void editsProfile() {
-        profilePages.fillProfile(name, phoneNumber, country, urlTwitter, urlGitHub);
+        profilePages.fillProfile(name, phoneNumber, city, country, urlTwitter, urlGitHub);
         driverWait.until(ExpectedConditions.visibilityOf(profilePages.getMessage()));
         Assert.assertTrue(profilePages.getMessage().getText().contains("Profile saved successfuly"));
         Assert.assertEquals(profilePages.getName().getAttribute("value"), name);
         Assert.assertEquals(profilePages.getPhoneNumber().getAttribute("value"), phoneNumber);
-        Assert.assertEquals(profilePages.getCity().getAttribute("value"), "Barranquilla");
+        Assert.assertEquals(profilePages.getCity().getAttribute("value"), city);
         Assert.assertEquals(profilePages.getCountry().getAttribute("value"), country);
         Assert.assertEquals(profilePages.getTwitter().getAttribute("value"), urlTwitter);
         Assert.assertEquals(profilePages.getGitHub().getAttribute("value"), urlGitHub);
